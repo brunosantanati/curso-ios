@@ -18,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *endereco;
 @property (weak, nonatomic) IBOutlet UITextField *site;
 @property (strong) ContatoDao *dao;
+@property (strong) Contato *contato;
 
-- (IBAction)pegaDadosDoFormulario;
 - (IBAction) testar;
 
 @end

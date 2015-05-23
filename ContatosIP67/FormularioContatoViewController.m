@@ -30,8 +30,26 @@
     if (self) {
         self.dao = [ContatoDao contatoDaoInstance];
         self.navigationItem.title = @"Cadastro";
+        
+        UIBarButtonItem *botaoAdd = [[UIBarButtonItem alloc] initWithTitle:@"Add"
+                                         style:UIBarButtonItemStylePlain
+                                        target:self
+                                        action:@selector(criaContato)];
+        self.navigationItem.rightBarButtonItem = botaoAdd;
     }
     return self;
+}
+
+- (void) criaContato{
+    [self pegaDadosDoFormulario];
+    [self.dao adicionaContato:self.contato];
+    
+    // voltar - modal
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    
+    //voltar - push
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (IBAction)pegaDadosDoFormulario {
@@ -43,16 +61,14 @@
     
     NSLog(@"Nome: %@, Telefone: %@, Email: %@, Endereço: %@, Site: %@", nome, telefone, email, endereco, site);*/
     
-    Contato *contato = [Contato new];
-    contato.nome = self.nome.text;
-    contato.telefone = self.telefone.text;
-    contato.email = self.email.text;
-    contato.endereco = self.endereco.text;
-    contato.site = self.site.text;
+    self.contato = [Contato new];
+    self.contato.nome = self.nome.text;
+    self.contato.telefone = self.telefone.text;
+    self.contato.email = self.email.text;
+    self.contato.endereco = self.endereco.text;
+    self.contato.site = self.site.text;
     
-    [self.dao adicionaContato:contato];
-    
-    //NSLog(@"Dados: %@", contato);
+    //NSLog(@"Dados: %@", self.contato);
 }
 
 - (IBAction) testar {
