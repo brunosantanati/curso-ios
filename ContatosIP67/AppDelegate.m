@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ListaContatosViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //customização
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+    
+    ListaContatosViewController *lista = [ListaContatosViewController new];
+    
+    UINavigationController *barrinha = [[UINavigationController alloc] initWithRootViewController: lista];
+    self.window.rootViewController = barrinha;
+    
+    //self.window.rootViewController = lista;
+    
+    [self.window makeKeyAndVisible];
+    //fim customização
+    
     return YES;
 }
 

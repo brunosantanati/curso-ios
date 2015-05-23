@@ -29,6 +29,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.dao = [ContatoDao contatoDaoInstance];
+        self.navigationItem.title = @"Cadastro";
     }
     return self;
 }
@@ -52,5 +53,15 @@
     [self.dao adicionaContato:contato];
     
     //NSLog(@"Dados: %@", contato);
+}
+
+- (IBAction) testar {
+    //iterar pelas views da tela
+    NSArray *views = [self.view subviews];
+    for(UIView *v in views){
+        NSLog(@"Tag: %lu", v.tag);
+    }
+    
+    //UIView *botao = [self.view viewForTag:13]; //pegar pela tag
 }
 @end

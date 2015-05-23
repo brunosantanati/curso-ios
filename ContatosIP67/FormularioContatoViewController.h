@@ -20,6 +20,7 @@
 @property (strong) ContatoDao *dao;
 
 - (IBAction)pegaDadosDoFormulario;
+- (IBAction) testar;
 
 @end
 
