@@ -57,6 +57,10 @@
     [self pegaDadosDoFormulario];
     [self.dao adicionaContato:self.contato];
     
+    if (self.delegate) {
+        [self.delegate contatoAdicionado:self.contato];
+    }
+    
     // voltar - modal
     //[self dismissViewControllerAnimated:YES completion:nil];
     
@@ -66,7 +70,30 @@
 }
 
 - (void) atualizaContato{
+    
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"confirmação"
+                                                     message:@"quer realmente incluir?"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancelar"
+                                           otherButtonTitles:@"OK", nil];
+    
+    [alerta show];
+
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1)    {
+        [self confirmaAtualizacao];
+    }
+}
+
+- (void) confirmaAtualizacao{
     [self pegaDadosDoFormulario];
+    
+    if (self.delegate) {
+        [self.delegate contatoAtualizado:self.contato];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

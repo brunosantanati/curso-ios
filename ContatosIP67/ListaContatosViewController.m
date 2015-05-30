@@ -15,6 +15,15 @@
     [self.tableView reloadData];
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+    if(self.linhaDestaque > 0){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.linhaDestaque inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        self.linhaDestaque = -1;
+    }
+}
+
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewStylePlain ];
@@ -31,6 +40,8 @@
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
         
         self.dao = [ContatoDao contatoDaoInstance];
+        
+        self.linhaDestaque = -1;
     }
     return self;
 }
@@ -54,6 +65,8 @@
     //carregando storyboard via código
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FormularioContatoViewController *form = [storyBoard instantiateViewControllerWithIdentifier:@"Form-Contato"];
+    
+    form.delegate = self;
     
     if (self.contatoSelecionado) {
         form.contato = self.contatoSelecionado;
@@ -106,6 +119,16 @@
     [self exibeFormulario];
     self.contatoSelecionado = nil;
 
+}
+
+- (void) contatoAtualizado:(Contato *)contato{
+    self.linhaDestaque = [self.dao buscaPosicaoDoContrato:contato];
+    NSLog(@"contato atualizado: %@", contato.nome);
+}
+
+- (void) contatoAdicionado:(Contato *)contato{
+    self.linhaDestaque = [self.dao buscaPosicaoDoContrato:contato];
+    NSLog(@"contato adicionado: %@", contato.nome);
 }
 
 @end
