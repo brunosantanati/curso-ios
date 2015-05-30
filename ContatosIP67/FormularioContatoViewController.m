@@ -14,9 +14,29 @@
 
 @implementation FormularioContatoViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad{
+    if(self.contato){
+        self.navigationItem.title = @"Alterar";
+        UIBarButtonItem *confirmar = [[UIBarButtonItem alloc] initWithTitle:@"Confirmar"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self action:@selector(atualizaContato)];
+        
+        self.navigationItem.rightBarButtonItem = confirmar;
+        
+        self.nome.text = self.contato.nome;
+        self.telefone.text = self.contato.telefone;
+        self.email.text = self.contato.email;
+        self.endereco.text = self.contato.endereco;
+        self.site.text = self.contato.site;
+    }else{
+        self.navigationItem.title = @"Cadastro";
+        
+        UIBarButtonItem *botaoAdd = [[UIBarButtonItem alloc] initWithTitle:@"Add"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(criaContato)];
+        self.navigationItem.rightBarButtonItem = botaoAdd;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,13 +49,6 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.dao = [ContatoDao contatoDaoInstance];
-        self.navigationItem.title = @"Cadastro";
-        
-        UIBarButtonItem *botaoAdd = [[UIBarButtonItem alloc] initWithTitle:@"Add"
-                                         style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(criaContato)];
-        self.navigationItem.rightBarButtonItem = botaoAdd;
     }
     return self;
 }
@@ -52,6 +65,11 @@
     
 }
 
+- (void) atualizaContato{
+    [self pegaDadosDoFormulario];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)pegaDadosDoFormulario {
     /*NSString *nome = self.nome.text;
     NSString *telefone = self.telefone.text;
@@ -61,7 +79,10 @@
     
     NSLog(@"Nome: %@, Telefone: %@, Email: %@, Endereço: %@, Site: %@", nome, telefone, email, endereco, site);*/
     
-    self.contato = [Contato new];
+    if (!self.contato) {
+        self.contato = [Contato new];
+    }
+    
     self.contato.nome = self.nome.text;
     self.contato.telefone = self.telefone.text;
     self.contato.email = self.email.text;
@@ -80,4 +101,5 @@
     
     //UIView *botao = [self.view viewForTag:13]; //pegar pela tag
 }
+
 @end

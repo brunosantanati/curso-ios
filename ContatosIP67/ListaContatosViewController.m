@@ -11,9 +11,13 @@
 
 @implementation ListaContatosViewController
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
 - (instancetype)init
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStylePlain ];
     if (self) {
         SEL metodo = @selector(exibeFormulario);
         self.navigationItem.title = @"Contatos";
@@ -23,6 +27,8 @@
                                                                                                action:metodo];
         
         self.navigationItem.rightBarButtonItem = botaoExibirFormulario;
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
         
         self.dao = [ContatoDao contatoDaoInstance];
     }
@@ -49,6 +55,10 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FormularioContatoViewController *form = [storyBoard instantiateViewControllerWithIdentifier:@"Form-Contato"];
     
+    if (self.contatoSelecionado) {
+        form.contato = self.contatoSelecionado;
+    }
+    
     //transição de tela push
     [self.navigationController pushViewController:form animated:YES];
     
@@ -61,13 +71,41 @@
     return 1;
 }
 
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.dao.contatos count];
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = nil;
-    /*cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                  reuseIdentifier:nil];
-    int linha = indexPath.row;
-    Contato *contato = [ContatoDao]*/ //terminar
+    
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
+    
+    Contato *contato = [self.dao buscaContatoDaPosicao: indexPath.row];
+    cell.textLabel.text = contato.nome;
+    
     return cell;
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        int linha = indexPath.row;
+        [self.dao removeContatoDaPosicao:linha];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.contatoSelecionado = [self.dao buscaContatoDaPosicao:indexPath.row];
+    NSLog(@"Nome: %@", self.contatoSelecionado.nome);
+    [self exibeFormulario];
+    self.contatoSelecionado = nil;
+
 }
 
 @end

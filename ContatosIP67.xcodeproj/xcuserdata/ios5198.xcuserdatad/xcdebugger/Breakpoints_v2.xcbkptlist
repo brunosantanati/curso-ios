@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ContatosIP67/FormularioContatoViewController.m"
-            timestampString = "454098170.225212"
+            timestampString = "454692554.58062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-testar"
             landmarkType = "5">
          </BreakpointContent>
