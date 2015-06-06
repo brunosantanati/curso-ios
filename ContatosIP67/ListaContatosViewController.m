@@ -11,19 +11,6 @@
 
 @implementation ListaContatosViewController
 
-- (void) viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
-}
-
-- (void) viewDidAppear:(BOOL)animated{
-    if(self.linhaDestaque > 0){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.linhaDestaque inSection:0];
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
-        self.linhaDestaque = -1;
-    }
-}
-
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewStylePlain ];
@@ -44,6 +31,42 @@
         self.linhaDestaque = -1;
     }
     return self;
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    if(self.linhaDestaque > 0){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.linhaDestaque inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        self.linhaDestaque = -1;
+    }
+}
+
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(exibeMaisAcoes:)];
+    
+    [self.tableView addGestureRecognizer:longPress];
+}
+
+- (void) exibeMaisAcoes:(UIGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        CGPoint ponto = [gesture locationInView:self.tableView];
+        NSIndexPath *index = [self.tableView indexPathForRowAtPoint:ponto];
+        
+        if (index) {
+            self.contatoSelecionado = [self.dao buscaContatoDaPosicao:index.row];
+            _gerenciador = [[GerenciadorDeAcoes alloc] initWithContato:self.contatoSelecionado];
+            [self.gerenciador acoesDoController:self];
+        }
+        
+        self.contatoSelecionado = [self.dao buscaContatoDaPosicao:index.row];
+    }
 }
 
 - (void) exibeFormulario{
