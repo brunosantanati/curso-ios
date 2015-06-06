@@ -123,6 +123,8 @@
     
     Contato *contato = [self.dao buscaContatoDaPosicao: indexPath.row];
     cell.textLabel.text = contato.nome;
+    cell.imageView.image = contato.foto;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
@@ -142,6 +144,12 @@
     [self exibeFormulario];
     self.contatoSelecionado = nil;
 
+}
+
+- (void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    self.contatoSelecionado = [self.dao buscaContatoDaPosicao:indexPath.row];
+    _gerenciador = [[GerenciadorDeAcoes alloc] initWithContato:self.contatoSelecionado];
+    [self.gerenciador acoesDoController:self];
 }
 
 - (void) contatoAtualizado:(Contato *)contato{

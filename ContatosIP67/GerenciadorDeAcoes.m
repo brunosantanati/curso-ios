@@ -92,6 +92,12 @@
 
 - (void) abrirSite {
     NSString *url = self.contato.site;
+    
+    NSRange range = [url rangeOfString:@"http"];
+    if(range.location == NSNotFound){
+        self.contato.site = [NSString stringWithFormat:@"http://%@", self.contato.site];
+    }
+    
     [self abrirAplicativoURL:url];
 }
 

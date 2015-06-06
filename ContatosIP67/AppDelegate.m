@@ -24,10 +24,10 @@
     
     ListaContatosViewController *lista = [ListaContatosViewController new];
     
+    //self.window.rootViewController = lista;
+    
     UINavigationController *barrinha = [[UINavigationController alloc] initWithRootViewController: lista];
     self.window.rootViewController = barrinha;
-    
-    //self.window.rootViewController = lista;
     
     [self.window makeKeyAndVisible];
     //fim customização

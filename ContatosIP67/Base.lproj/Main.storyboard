@@ -47,12 +47,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Ug-1H-9zG">
-                                <rect key="frame" x="109" y="67" width="168" height="30"/>
+                                <rect key="frame" x="109" y="67" width="98" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1JF-K9-CaL">
-                                <rect key="frame" x="109" y="105" width="168" height="30"/>
+                                <rect key="frame" x="109" y="105" width="98" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -80,11 +80,21 @@
                                     <action selector="testar" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nKh-gV-oia"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8af-0f-6Ai">
+                                <rect key="frame" x="222" y="67" width="73" height="66"/>
+                                <state key="normal" title="Foto">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selecionarFoto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CSJ-kD-Ftl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="botaoFoto" destination="8af-0f-6Ai" id="vcw-iv-Cpd"/>
                         <outlet property="email" destination="eTf-eq-nto" id="SbH-Xp-d4b"/>
                         <outlet property="endereco" destination="yrq-AC-5sx" id="fM3-eN-xwA"/>
                         <outlet property="nome" destination="0Ug-1H-9zG" id="0i4-NC-Nlx"/>
