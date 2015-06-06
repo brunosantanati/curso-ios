@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ListaContatosViewController.h"
+#import "UIViewController+Maroto.h"
 
 @interface AppDelegate ()
 

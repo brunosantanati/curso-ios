@@ -19,6 +19,7 @@
 		4649A4D71B07D218005DE99D /* ContatoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4649A4D61B07D218005DE99D /* ContatoDao.m */; };
 		46CA3F651B2330700048CF47 /* GerenciadorDeAcoes.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA3F641B2330700048CF47 /* GerenciadorDeAcoes.m */; };
 		46CA3F671B2345BB0048CF47 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CA3F661B2345BB0048CF47 /* MessageUI.framework */; };
+		46CA3F6D1B2385C20048CF47 /* UIViewController+Maroto.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA3F6C1B2385C20048CF47 /* UIViewController+Maroto.m */; };
 		46D3483A1B10B7440091653E /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D348391B10B7440091653E /* ListaContatosViewController.m */; };
 		46D3483C1B10CADC0091653E /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46D3483B1B10CADC0091653E /* FormularioContatoViewController.xib */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,8 @@
 		46CA3F631B2330700048CF47 /* GerenciadorDeAcoes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GerenciadorDeAcoes.h; sourceTree = "<group>"; };
 		46CA3F641B2330700048CF47 /* GerenciadorDeAcoes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GerenciadorDeAcoes.m; sourceTree = "<group>"; };
 		46CA3F661B2345BB0048CF47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		46CA3F6B1B2385C20048CF47 /* UIViewController+Maroto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Maroto.h"; sourceTree = "<group>"; };
+		46CA3F6C1B2385C20048CF47 /* UIViewController+Maroto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Maroto.m"; sourceTree = "<group>"; };
 		46D348381B10B7440091653E /* ListaContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaContatosViewController.h; sourceTree = "<group>"; };
 		46D348391B10B7440091653E /* ListaContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaContatosViewController.m; sourceTree = "<group>"; };
 		46D3483B1B10CADC0091653E /* FormularioContatoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormularioContatoViewController.xib; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 		4649A49D1B07ABAE005DE99D = {
 			isa = PBXGroup;
 			children = (
+				46CA3F6B1B2385C20048CF47 /* UIViewController+Maroto.h */,
+				46CA3F6C1B2385C20048CF47 /* UIViewController+Maroto.m */,
 				46CA3F661B2345BB0048CF47 /* MessageUI.framework */,
 				4649A4A81B07ABAE005DE99D /* ContatosIP67 */,
 				4649A4C51B07ABAE005DE99D /* ContatosIP67Tests */,
@@ -255,6 +260,7 @@
 				46D3483A1B10B7440091653E /* ListaContatosViewController.m in Sources */,
 				4649A4B21B07ABAE005DE99D /* ContatosIP67.xcdatamodeld in Sources */,
 				4649A4D71B07D218005DE99D /* ContatoDao.m in Sources */,
+				46CA3F6D1B2385C20048CF47 /* UIViewController+Maroto.m in Sources */,
 				4649A4B51B07ABAE005DE99D /* FormularioContatoViewController.m in Sources */,
 				46CA3F651B2330700048CF47 /* GerenciadorDeAcoes.m in Sources */,
 				4649A4AC1B07ABAE005DE99D /* main.m in Sources */,
