@@ -15,6 +15,11 @@
 {
     self = [super initWithStyle:UITableViewStylePlain ];
     if (self) {
+        
+        UIImage *imagemTabItem = [UIImage imageNamed:@"lista-contatos.png"];
+        UITabBarItem *tabItem = [[UITabBarItem alloc] initWithTitle:@"Contatos" image:imagemTabItem tag:0];
+        self.tabBarItem = tabItem;
+        
         SEL metodo = @selector(exibeFormulario);
         self.navigationItem.title = @"Contatos";
         

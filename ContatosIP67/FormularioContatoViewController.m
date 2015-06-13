@@ -149,7 +149,11 @@
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         picker.allowsEditing = YES;
         picker.delegate = self;
-        [self presentViewController:picker animated:YES completion:nil];
+        NSLog(@"Antes");
+        [self presentViewController:picker animated:YES completion:^{
+            NSLog(@"Meio");
+        }];
+        NSLog(@"Depois");
     }
 }
 

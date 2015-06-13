@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ListaContatosViewController.h"
 #import "UIViewController+Maroto.h"
+#import "ContatosNoMapaViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,11 +25,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
     
     ListaContatosViewController *lista = [ListaContatosViewController new];
-    
     //self.window.rootViewController = lista;
-    
     UINavigationController *barrinha = [[UINavigationController alloc] initWithRootViewController: lista];
-    self.window.rootViewController = barrinha;
+    
+    ContatosNoMapaViewController *contatosMapa = [ContatosNoMapaViewController new];
+    UINavigationController *barrinhaMapa = [[UINavigationController alloc] initWithRootViewController:contatosMapa];
+    
+    UITabBarController *tabBarController = [UITabBarController new];
+    tabBarController.viewControllers = @[barrinha, barrinhaMapa];
+    
+    
+    self.window.rootViewController = tabBarController;
     
     [self.window makeKeyAndVisible];
     //fim customização
