@@ -28,6 +28,8 @@
         self.email.text = self.contato.email;
         self.endereco.text = self.contato.endereco;
         self.site.text = self.contato.site;
+        self.latitude.text = [self.contato.latitude stringValue];
+        self.longitude.text = [self.contato.longitude stringValue];
         
         if (self.contato.foto) {
             [self.botaoFoto setBackgroundImage:self.contato.foto
@@ -126,18 +128,10 @@
     self.contato.email = self.email.text;
     self.contato.endereco = self.endereco.text;
     self.contato.site = self.site.text;
+    self.contato.latitude = [NSNumber numberWithFloat:[self.latitude.text floatValue]];
+    self.contato.longitude = [NSNumber numberWithFloat:[self.longitude.text floatValue]];
     
     //NSLog(@"Dados: %@", self.contato);
-}
-
-- (IBAction) testar {
-    //iterar pelas views da tela
-    NSArray *views = [self.view subviews];
-    for(UIView *v in views){
-        NSLog(@"Tag: %lu", v.tag);
-    }
-    
-    //UIView *botao = [self.view viewForTag:13]; //pegar pela tag
 }
 
 - (IBAction) selecionarFoto:(id)sender {
@@ -162,6 +156,35 @@
     [self.botaoFoto setBackgroundImage:imagemSelecionada forState:UIControlStateNormal];
     [self.botaoFoto setTitle:nil forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)buscarCoordenadas:(UIButton *)botao{
+    
+    [self.loading startAnimating];
+    botao.hidden = YES;
+    CLGeocoder *geocoder = [CLGeocoder new];
+    [geocoder geocodeAddressString:self.endereco.text completionHandler:^(NSArray *resultados, NSError *error) {
+        if (error == nil && [resultados count] > 0) {
+            CLPlacemark *resultado = resultados[0];
+            CLLocationCoordinate2D coordenada = resultado.location.coordinate;
+            self.latitude.text = [NSString stringWithFormat:@"%f", coordenada.latitude];
+            self.longitude.text = [NSString stringWithFormat:@"%f", coordenada.longitude];
+        } else {
+            NSLog(@"Erro: %@ Resultados: %@", error, resultados);
+        }
+        [self.loading stopAnimating];
+        botao.hidden = NO;
+    }];
+}
+
+- (IBAction) testar {
+    //iterar pelas views da tela
+    NSArray *views = [self.view subviews];
+    for(UIView *v in views){
+        NSLog(@"Tag: %lu", v.tag);
+    }
+    
+    //UIView *botao = [self.view viewForTag:13]; //pegar pela tag
 }
 
 @end

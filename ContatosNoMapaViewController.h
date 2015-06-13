@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapa;
 @property CLLocationManager *manager;
+@property (weak, nonatomic) NSMutableArray *contatos;
 
 @end

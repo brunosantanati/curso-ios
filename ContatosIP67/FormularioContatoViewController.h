@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Contato.h"
 #import "ContatoDao.h"
+#import <CoreLocation/CoreLocation.h>
 
 @protocol FormularioContatoViewControllerDelegate <NSObject>
 
@@ -28,9 +29,12 @@
 @property (strong) Contato *contato;
 @property (weak) id<FormularioContatoViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *botaoFoto;
+@property (weak, nonatomic) IBOutlet UITextField *latitude;
+@property (weak, nonatomic) IBOutlet UITextField *longitude;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 
-- (IBAction) testar;
 - (IBAction) selecionarFoto:(id)sender;
+- (IBAction) testar;
 
 @end
 

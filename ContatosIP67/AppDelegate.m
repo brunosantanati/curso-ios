@@ -10,6 +10,7 @@
 #import "ListaContatosViewController.h"
 #import "UIViewController+Maroto.h"
 #import "ContatosNoMapaViewController.h"
+#import "Produto.h"
 
 @interface AppDelegate ()
 
@@ -38,6 +39,13 @@
     self.window.rootViewController = tabBarController;
     
     [self.window makeKeyAndVisible];
+    
+    //Exemplo de como instanciar e salvar um objeto no banco
+    /*
+    Produto *p = [NSEntityDescription insertNewObjectForEntityForName:@"Produto" inManagedObjectContext:self.managedObjectContext];
+    p.nome = @"Disco";
+    [self saveContext];*/
+    
     //fim customização
     
     return YES;
